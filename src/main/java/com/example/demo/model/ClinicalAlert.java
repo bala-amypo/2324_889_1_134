@@ -6,5 +6,6 @@ public class ClinicalAlert {
     private Long id;
     private PaitentProfile paitent;
     private LocalDate alterDate;
-    private 
+    private Severity severity; 
+    private boolean resolved;
 }
