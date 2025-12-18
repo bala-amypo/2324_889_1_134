@@ -21,5 +21,7 @@ public Long getid(){
 public String getpatientid(){
     return patientid;
 }
-public String get
+public String getfullname(){
+    return fullname;
+}
 }
