@@ -1,4 +1,4 @@
-import com.example.demo.model;
+package com.example.demo.model;
 
 public class PaitentProfile {
     @id
@@ -7,6 +7,7 @@ public class PaitentProfile {
     private String patientid;
     private String fullname;
     private int age;
+    @column(name=unique)
     private String email;
     private String surgeryType;
     private boolean active;
