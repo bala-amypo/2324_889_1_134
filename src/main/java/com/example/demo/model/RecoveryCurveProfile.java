@@ -8,12 +8,5 @@ public class RecoveryCurveProfile{
     private int expectedMobilityLevel;
     private int expectedFatigueLevel;
 
-public Long getid(){
-    return id;
-}
-public String getsurgeryType(){
-    return surgeryType;
-}
-
 
 }
