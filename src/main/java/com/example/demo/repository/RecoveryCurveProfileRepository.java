@@ -1,1 +1,3 @@
-public interface RecoveryCurveProfileRepository extends JpaRepository<
+public interface RecoveryCurveProfileRepository extends JpaRepository<RecoveryCurveProfile,Long>{
+    
+}

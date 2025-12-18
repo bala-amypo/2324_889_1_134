@@ -1,0 +1,1 @@
+public inteface AppUserRepository extends JpaRepository<AppUser
