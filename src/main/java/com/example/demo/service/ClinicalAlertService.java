@@ -3,8 +3,11 @@ import com.example.demo.model.ClinicalAlert;
 
 public interface ClinicalAlertService{
     ClinicalAlert createAlert(ClinicalAlert alert);
+
     ClinicalAlert getAlertsByPatient(Long patientId);
+
     ClinicalAlert resolveAlert(Long alertId);
-    ClinicalAlert getAllAlerts();
+    
+    List<ClinicalAlert> getAllAlerts();
 }
 
