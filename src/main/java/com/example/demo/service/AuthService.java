@@ -2,5 +2,6 @@ package com.example.demo.service
 import com.example.demo.model.AppUser;
 
 public interface AuthService{
-    AppUser re
+    AppUser register(RegisterRequest request);
+    AppUser  
 }
