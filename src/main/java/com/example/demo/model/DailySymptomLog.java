@@ -1,6 +1,6 @@
 package com.example.demo.model
 
-public class DailySymptomLog{
+public class DailySymptomLog {
     @Id
     private Long id;
     private PaitentProfile paitent;
