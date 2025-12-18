@@ -5,5 +5,6 @@ public class ClinicalAlert {
     @Id
     private Long id;
     private PaitentProfile paitent;
-    private Local
+    private LocalDate alterDate;
+    private 
 }
