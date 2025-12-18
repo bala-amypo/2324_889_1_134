@@ -14,4 +14,12 @@ public class PaitentProfile {
     private boolean active;
     private LocalDate createdAt;
 
+
+public Long getid(){
+    return  id;
+}
+public String getpatientid(){
+    return patientid;
+}
+public String get
 }
