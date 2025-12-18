@@ -1,7 +1,13 @@
 package com.example.demo.service;
 
 import com.example.demo.model.DeviationRule;
+import java.util.List;
 
 public interface DeviationRuleService{
-    DeviationRule
+    DeviationRule createRule(DeviationRule rule);
+
+    DeviationRule getRulesBySurgery(String surgeryType);
+
+    List<DeviationRule> getAllRules();
+
 }
