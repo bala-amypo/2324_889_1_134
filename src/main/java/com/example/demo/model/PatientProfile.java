@@ -1,7 +1,8 @@
 package com.example.demo.model;
+import jakarta.persistence.Id;
 
 public class PaitentProfile {
-    @id
+    @Id
     private Long id;
     @column(name=unique)
     private String patientid;
