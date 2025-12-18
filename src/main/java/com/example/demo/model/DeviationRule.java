@@ -84,7 +84,4 @@ public class DeviationRule{
 
     public DeviationRule() {
     }
-   
-
- 
 }

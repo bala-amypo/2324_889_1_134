@@ -83,6 +83,4 @@ public RecoveryCurveProfile(Long id, String surgeryType, int dayNumber, int expe
 
     public RecoveryCurveProfile() {
     }
-
-
 }

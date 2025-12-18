@@ -90,8 +90,4 @@ public class DailySymptomLog {
     public void setSubmittedAt(LocalDateTime submittedAt) {
         this.submittedAt = submittedAt;
     }
-
-    
-
- 
 }
