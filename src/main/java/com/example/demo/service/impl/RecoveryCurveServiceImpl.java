@@ -19,3 +19,7 @@ public  RecoveryCurveProfile createCurveEntry(RecoveryCurveProfile entry){
 public  RecoveryCurveProfile getCurveForSurgery(String surgeryType){
     return repository.findBySurgeryType(surgeryType);
 }
+@Override
+public  RecoveryCurveProfile getAllCurve(){
+    return repository.findAll();
+}
