@@ -3,15 +3,15 @@ import com.example.demo.model.RecoveryCurve;
 import com.example.demo.repository.RecoveryCurveRepository;
 
 @Service
-public interface  implements PaitentProfile{
+public interface RecoveryCurveServiceImpl  implements RecoveryCurve{
 
-private final PatientProfileRepository repository;
+private final RecoveryCurveRepository repository;
 
-public PatientProfileImpl(PatientProfileRepository repository){
+public RecoveryCurveServiceImpl(RecoveryCurveRepository repository){
     this.repository=repository;
 }
 
 @Override
-public PatientProfile createPatient(PatientProfile patient){
+public  RecoveryCurve createCurveEntry(RecoveryCurveProfile ){
     
 }
