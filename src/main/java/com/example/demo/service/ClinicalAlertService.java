@@ -1,28 +1,14 @@
-package com.example.demo.service.impl;
-
+package com.example.demo.service;
 import com.example.demo.model.ClinicalAlert;
-import com.example.demo.repository.ClinicalAlertRepository;
-import com.example.demo.service.ClinicalAlertService;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 
-@Service
-public class ClinicalAlertServiceImpl implements ClinicalAlertService {
+public interface ClinicalAlertService{
+    ClinicalAlert createAlert(ClinicalAlert alert);
 
-    private final ClinicalAlertRepository repository;
+    ClinicalAlert getAlertsByPatient(Long patientId);
 
-    public ClinicalAlertServiceImpl(ClinicalAlertRepository repository) {
-        this.repository = repository;
-    }
+    ClinicalAlert resolveAlert(Long alertId);
 
-    @Override
-    public ClinicalAlert createAlert(ClinicalAlert alert) {
-        return repository.save(alert);
-    }
-
-    @Override
-    public List<ClinicalAlert> getAllAlerts() {
-        return repository.findAll();
-    }
+    List<ClinicalAlert> getAllAlerts();
 }
+

@@ -1,27 +1,33 @@
-package com.example.demo.service;
+package com.example.demo.service.impl;
+
 import com.example.demo.model.DailySymptomLog;
 import com.example.demo.repository.DailySymptomLogRepository;
+import com.example.demo.service.DailySymptomLogService;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
-public interface DailySymptomLogServiceImpl implements DailySymptomLog{
+public class DailySymptomLogServiceImpl implements DailySymptomLogService {
 
-private final DailySymptomLogRepository repository;
+    private final DailySymptomLogRepository repository;
 
-public DailySymptomLogServiceImpl(DailySymptomLogRepository repository){
-    this.repository=repository;
-}
+    public DailySymptomLogServiceImpl(DailySymptomLogRepository repository) {
+        this.repository = repository;
+    }
 
-@Override
-public DailySymptomLog createRule(recordLog log){
-    return repository.save(log);
-}
-@Override
-public DailySymptomLog getLogsByPatient(Long patientid){
-    return repository.findById(patientid);
-}
-@Override
-public DailySymptomLog getLogById(Long id){
-    return repository.findById(Long id);
-}
+    @Override
+    public DailySymptomLog recordLog(DailySymptomLog log) {
+        return repository.save(log);
+    }
 
-} 
+    @Override
+    public List<DailySymptomLog> getLogsByPatient(Long patientId) {
+        return repository.findByPatientId(patientId);
+    }
+
+    @Override
+    public DailySymptomLog getLogById(Long id) {
+        return repository.findById(id).orElse(null);
+    }
+}
