@@ -13,13 +13,19 @@ public PatientProfileServiceImpl(PatientProfileRepository repository){
 
 @Override
 public PatientProfile createPatient(PatientProfile patient){
-     return repository.save(patient);
+    return repository.save(patient);
 }
 @Override
 public PatientProfile getPatientById(Long id){
-     return repository.findById();
+    return repository.findById(id);
 }
-
-
+@Override
+public PatientProfile getAllPatients(){
+    return repository.findAll();
+}
+@Override
+public PatientProfile updatePatientStatus(Long id,boolean active){
+    return repository.findById(id);
+}
 
 } 
