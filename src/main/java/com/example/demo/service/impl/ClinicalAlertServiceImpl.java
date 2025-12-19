@@ -1,13 +1,13 @@
 package com.example.demo.service;
-import com.example.demo.model.DailySymptomLog;
-import com.example.demo.repository.DailySymptomLogRepository;
+import com.example.demo.model.ClinicalAlert;
+import com.example.demo.repository.ClinicalAlertRepository;
 
 @Service
-public interface DailySymptomLogServiceImpl implements DailySymptomLog{
+public interface ClinicalAlertServiceImpl implements ClinicalAlert{
 
-private final DailySymptomLogRepository repository;
+private final ClinicalAlertRepository repository;
 
-public DailySymptomLogServiceImpl(PatientProfileRepository repository){
+public ClinicalAlertServiceImpl(ClinicalAlertRepository repository){
     this.repository=repository;
 }
 
