@@ -12,15 +12,15 @@ public DeviationRuleServiceImpl(PatientProfileRepository repository){
 }
 
 @Override
-public PatientProfile createPatient(PatientProfile patient){
-    return repository.save(patient);
+public DeviationRule createRule(DeviationRule rule){
+    return repository.save(rule);
 }
 @Override
-public PatientProfile getPatientById(Long id){
+public DeviationRule getPatientById(Long id){
     return repository.findById(id);
 }
 @Override
-public PatientProfile getAllPatients(){
+public DeviationRule getAllPatients(){
     return repository.findAll();
 }
 @Override
