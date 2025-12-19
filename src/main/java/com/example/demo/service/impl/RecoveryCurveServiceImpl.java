@@ -17,5 +17,5 @@ public  RecoveryCurveProfile createCurveEntry(RecoveryCurveProfile entry){
 }
 @Override
 public  RecoveryCurveProfile getCurveForSurgery(String surgeryType){
-    return repository.save(entry);
+    return repository.findBySurgeryType(surgeryType);
 }
