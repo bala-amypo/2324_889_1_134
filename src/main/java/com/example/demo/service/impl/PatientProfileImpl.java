@@ -12,7 +12,9 @@ public PatientProfileImpl(PatientProfileRepository repository){
 }
 
 @Override
-public PatientProfile createPatient(Patient)
+public PatientProfile createPatient(PatientProfile patient){
+    
+}
 
 
 
