@@ -25,7 +25,7 @@ public PatientProfile getAllPatients(){
 }
 @Override
 public PatientProfile updatePatientStatus(Long id,boolean active){
-    return repository.findById(id);
+    
 }
 
 } 
