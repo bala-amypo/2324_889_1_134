@@ -1,6 +1,7 @@
-package.com.example.demo.repository;
-import com.example.demo.model.AppUser;
+package com.example.demo.repository;
 
-public interface DailySymptomLogRepository extends JpaRepository<DailySymptomLog,Long>{
+import com.example.demo.model.DailySymptomLog;
+import org.springframework.data.jpa.repository.JpaRepository;
 
+public interface DailySymptomLogRepository extends JpaRepository<DailySymptomLog, Long> {
 }

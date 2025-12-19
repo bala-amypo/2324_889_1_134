@@ -1,6 +1,7 @@
-package.com.example.demo.repository;
-import com.example.demo.model.AppUser;
+package com.example.demo.repository;
 
-public interface RecoveryCurveProfileRepository extends JpaRepository<RecoveryCurveProfile,Long>{
-    
+import com.example.demo.model.RecoveryCurveProfile;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface RecoveryCurveProfileRepository extends JpaRepository<RecoveryCurveProfile, Long> {
 }
