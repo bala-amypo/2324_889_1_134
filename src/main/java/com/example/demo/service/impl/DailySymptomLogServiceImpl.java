@@ -17,15 +17,11 @@ public DailySymptomLog createRule(recordLog log){
 }
 @Override
 public DailySymptomLog getLogsByPatient(Long patientid){
-    return repository.findById(id);
+    return repository.findById(patientid);
 }
 @Override
-public PatientProfile getAllPatients(){
-    return repository.findAll();
-}
-@Override
-public PatientProfile updatePatientStatus(Long id,boolean active){
-    
+public DailySymptomLog getLogById(Long id){
+    return repository.findById(Long id);
 }
 
 } 
