@@ -16,13 +16,11 @@ public class AuthController {
         this.service = service;
     }
 
-    // POST /auth/register
     @PostMapping("/register")
     public AuthResponse register(@RequestBody RegisterRequest request) {
         return service.register(request);
     }
 
-    // POST /auth/login
     @PostMapping("/login")
     public AuthResponse login(@RequestBody AuthRequest request) {
         return service.login(request);

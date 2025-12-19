@@ -26,13 +26,11 @@ public class PatientProfileController {
         return service.getPatientById(id);
     }
 
-    // GET /api/patients
     @GetMapping
     public List<PatientProfile> getAllPatients() {
         return service.getAllPatients();
     }
 
-    // PUT /api/patients/{id}/status
     @PutMapping("/{id}/status")
     public PatientProfile updateStatus(
             @PathVariable Long id,

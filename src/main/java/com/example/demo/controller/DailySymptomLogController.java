@@ -16,13 +16,11 @@ public class DailySymptomLogController {
         this.service = service;
     }
 
-    // POST /api/symptom-logs
     @PostMapping
     public DailySymptomLog recordLog(@RequestBody DailySymptomLog log) {
         return service.recordLog(log);
     }
 
-    // PUT /api/symptom-logs/{id}
     @PutMapping("/{id}")
     public DailySymptomLog updateLog(
             @PathVariable Long id,
@@ -31,19 +29,16 @@ public class DailySymptomLogController {
         return service.updateLog(id, log);
     }
 
-    // GET /api/symptom-logs/patient/{patientId}
     @GetMapping("/patient/{patientId}")
     public List<DailySymptomLog> getByPatient(@PathVariable Long patientId) {
         return service.getLogsByPatient(patientId);
     }
 
-    // GET /api/symptom-logs/{id}
     @GetMapping("/{id}")
     public DailySymptomLog getById(@PathVariable Long id) {
         return service.getLogById(id);
     }
 
-    // GET /api/symptom-logs
     @GetMapping
     public List<DailySymptomLog> getAll() {
         return service.getAllLogs();
