@@ -16,16 +16,12 @@ public DeviationRule createRule(DeviationRule rule){
     return repository.save(rule);
 }
 @Override
-public DeviationRule getPatientById(Long id){
-    return repository.findById(id);
+public DeviationRule getRulesBySurgery(string surgeryType ){
+    return repository.findById(surgeryType);
 }
 @Override
-public DeviationRule getAllPatients(){
+public List<DeviationRule> getAllRules(){
     return repository.findAll();
-}
-@Override
-public PatientProfile updatePatientStatus(Long id,boolean active){
-    
 }
 
 } 
