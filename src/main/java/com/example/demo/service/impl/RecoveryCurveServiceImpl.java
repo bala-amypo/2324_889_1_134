@@ -1,9 +1,9 @@
 package com.example.demo.service;
-import com.example.demo.model.PaitentProfile;
-import com.example.demo.repository.PatientProfileRepository;
+import com.example.demo.model.RecoveryCurve;
+import com.example.demo.repository.RecoveryCurveRepository;
 
 @Service
-public interface PatientProfileImpl implements PaitentProfile{
+public interface  implements PaitentProfile{
 
 private final PatientProfileRepository repository;
 

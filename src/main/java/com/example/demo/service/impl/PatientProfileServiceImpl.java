@@ -3,11 +3,11 @@ import com.example.demo.model.PaitentProfile;
 import com.example.demo.repository.PatientProfileRepository;
 
 @Service
-public interface PatientProfileImpl implements PaitentProfile{
+public interface PatientProfileServiceImpl implements PaitentProfile{
 
 private final PatientProfileRepository repository;
 
-public PatientProfileImpl(PatientProfileRepository repository){
+public PatientProfileServiceImpl(PatientProfileRepository repository){
     this.repository=repository;
 }
 
