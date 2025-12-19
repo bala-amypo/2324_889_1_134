@@ -1,0 +1,43 @@
+package com.example.demo.controller;
+
+import com.example.demo.model.PatientProfile;
+import com.example.demo.service.PatientProfileService;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/patients")
+public class PatientProfileController {
+
+    private final PatientProfileService service;
+
+    public PatientProfileController(PatientProfileService service) {
+        this.service = service;
+    }
+
+    @PostMapping
+    public PatientProfile createPatient(@RequestBody PatientProfile patient) {
+        return service.createPatient(patient);
+    }
+
+    @GetMapping("/{id}")
+    public PatientProfile getPatientById(@PathVariable Long id) {
+        return service.getPatientById(id);
+    }
+
+    // GET /api/patients
+    @GetMapping
+    public List<PatientProfile> getAllPatients() {
+        return service.getAllPatients();
+    }
+
+    // PUT /api/patients/{id}/status
+    @PutMapping("/{id}/status")
+    public PatientProfile updateStatus(
+            @PathVariable Long id,
+            @RequestParam boolean active) {
+
+        return service.updatePatientStatus(id, active);
+    }
+}
