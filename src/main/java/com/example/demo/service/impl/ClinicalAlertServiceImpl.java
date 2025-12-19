@@ -12,8 +12,8 @@ public ClinicalAlertServiceImpl(ClinicalAlertRepository repository){
 }
 
 @Override
-public DailySymptomLog createRule(recordLog log){
-    return repository.save(log);
+public ClinicalAlert createAlert(ClinicalAlert alert){
+    return repository.save(alert);
 }
 @Override
 public DailySymptomLog getLogsByPatient(Long patientid){
