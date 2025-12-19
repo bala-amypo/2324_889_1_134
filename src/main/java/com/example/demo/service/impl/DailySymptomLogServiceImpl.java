@@ -7,7 +7,7 @@ public interface DailySymptomLogServiceImpl implements DailySymptomLog{
 
 private final DailySymptomLogRepository repository;
 
-public DailySymptomLogServiceImpl(PatientProfileRepository repository){
+public DailySymptomLogServiceImpl(DailySymptomLogRepository repository){
     this.repository=repository;
 }
 
