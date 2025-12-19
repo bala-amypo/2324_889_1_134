@@ -1,9 +1,9 @@
 package com.example.demo.service;
-import com.example.demo.model.RecoveryCurve;
+import com.example.demo.model.RecoveryCurveProfile;
 import com.example.demo.repository.RecoveryCurveRepository;
 
 @Service
-public interface RecoveryCurveServiceImpl  implements RecoveryCurve{
+public interface RecoveryCurveServiceImpl  implements RecoveryCurveProfilr{
 
 private final RecoveryCurveRepository repository;
 
@@ -12,6 +12,6 @@ public RecoveryCurveServiceImpl(RecoveryCurveRepository repository){
 }
 
 @Override
-public  RecoveryCurve createCurveEntry(RecoveryCurveProfile ){
+public  RecoveryCurveProfile createCurveEntry(RecoveryCurveProfile entry){
     
 }
