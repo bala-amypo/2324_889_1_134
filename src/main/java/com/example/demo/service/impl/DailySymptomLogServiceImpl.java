@@ -12,11 +12,11 @@ public DailySymptomLogServiceImpl(PatientProfileRepository repository){
 }
 
 @Override
-public PatientProfile createPatient(PatientProfile patient){
-    return repository.save(patient);
+public DailySymptomLog createRule(recordLog log){
+    return repository.save(log);
 }
 @Override
-public PatientProfile getPatientById(Long id){
+public DailySymptomLog getLogsByPatient(Long patientid){
     return repository.findById(id);
 }
 @Override
