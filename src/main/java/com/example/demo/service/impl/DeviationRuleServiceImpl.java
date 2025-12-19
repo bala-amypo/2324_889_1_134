@@ -1,27 +1,33 @@
-package com.example.demo.service;
+package com.example.demo.service.impl;
+
 import com.example.demo.model.DeviationRule;
 import com.example.demo.repository.DeviationRuleRepository;
+import com.example.demo.service.DeviationRuleService;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
-public interface DeviationRuleServiceImpl implements DeviationRule{
+public class DeviationRuleServiceImpl implements DeviationRuleService {
 
-private final DeviationRuleRepository repository;
+    private final DeviationRuleRepository repository;
 
-public DeviationRuleServiceImpl(PatientProfileRepository repository){
-    this.repository=repository;
-}
+    public DeviationRuleServiceImpl(DeviationRuleRepository repository) {
+        this.repository = repository;
+    }
 
-@Override
-public DeviationRule createRule(DeviationRule rule){
-    return repository.save(rule);
-}
-@Override
-public DeviationRule getRulesBySurgery(string surgeryType ){
-    return repository.findById(surgeryType);
-}
-@Override
-public List<DeviationRule> getAllRules(){
-    return repository.findAll();
-}
+    @Override
+    public DeviationRule createRule(DeviationRule rule) {
+        return repository.save(rule);
+    }
 
-} 
+    @Override
+    public List<DeviationRule> getRulesBySurgery(String surgeryType) {
+        return repository.findBySurgeryType(surgeryType);
+    }
+
+    @Override
+    public List<DeviationRule> getAllRules() {
+        return repository.findAll();
+    }
+}
