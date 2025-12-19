@@ -1,18 +1,18 @@
 package com.example.demo.service;
 import com.example.demo.model.AppUser;
-import com.example.demo.repository.Repository;
+import com.example.demo.repository.AppUserRepository;
 
 @Service
 public interface ClinicalAlertServiceImpl implements ClinicalAlert{
 
 private final ClinicalAlertRepository repository;
 
-public ClinicalAlertServiceImpl(ClinicalAlertRepository repository){
+public AuthServiceImpl(AppUserRepository repository){
     this.repository=repository;
 }
 
 @Override
-public ClinicalAlert createAlert(ClinicalAlert alert){
+public AppUser register(RegisterRequest request){
     return repository.save(alert);
 }
 @Override
