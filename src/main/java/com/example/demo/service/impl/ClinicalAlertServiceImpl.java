@@ -16,11 +16,11 @@ public ClinicalAlert createAlert(ClinicalAlert alert){
     return repository.save(alert);
 }
 @Override
-public DailySymptomLog getLogsByPatient(Long patientid){
+public ClinicalAlert getAlertByPatient(Long patientid){
     return repository.findById(patientid);
 }
 @Override
-public DailySymptomLog getLogById(Long id){
+public ClinicalAlert getLogById(Long id){
     return repository.findById(Long id);
 }
 
