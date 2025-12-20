@@ -1,22 +1,31 @@
 package com.example.demo.model;
+
+import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Column;
 
+@Entity
+public class AppUser {
 
-public class AppUser{
     @Id
+    @GeneratedValue
     private Long id;
-    @Column(name=unique)
+
+    @Column(unique = true)
     private String email;
+
     private String password;
     private String role;
-
 
     public AppUser(Long id, String email, String password, String role) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.role = role;
+    }
+
+    public AppUser() {
     }
 
     public Long getId() {
@@ -50,8 +59,4 @@ public class AppUser{
     public void setRole(String role) {
         this.role = role;
     }
-
-    public AppUser() {
-    }
-
 }
