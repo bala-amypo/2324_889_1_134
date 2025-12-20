@@ -1,26 +1,41 @@
 package com.example.demo.model;
+
+import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.ManyToOne;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
+@Entity
 public class DailySymptomLog {
+
     @Id
+    @GeneratedValue
     private Long id;
-    private PaitentProfile paitent;
+
+    @ManyToOne
+    private PatientProfile patient;
+
     private LocalDate logDate;
-    private int painLevel;
-    private int mobilityLevel;
-    private int fatigueLevel;
+    private Integer painLevel;
+    private Integer mobilityLevel;
+    private Integer fatigueLevel;
     private String notes;
     private LocalDateTime submittedAt;
 
-    public DailySymptomLog(int fatigueLevel, Long id, LocalDate logDate, int mobilityLevel, String notes, int painLevel, PaitentProfile paitent, LocalDateTime submittedAt) {
+    public DailySymptomLog(Integer fatigueLevel, Long id, LocalDate logDate,
+                           Integer mobilityLevel, String notes,
+                           Integer painLevel, PatientProfile patient,
+                           LocalDateTime submittedAt) {
         this.fatigueLevel = fatigueLevel;
         this.id = id;
         this.logDate = logDate;
         this.mobilityLevel = mobilityLevel;
         this.notes = notes;
         this.painLevel = painLevel;
-        this.paitent = paitent;
+        this.patient = patient;
         this.submittedAt = submittedAt;
     }
 
@@ -35,12 +50,12 @@ public class DailySymptomLog {
         this.id = id;
     }
 
-    public PaitentProfile getPaitent() {
-        return paitent;
+    public PatientProfile getPatient() {
+        return patient;
     }
 
-    public void setPaitent(PaitentProfile paitent) {
-        this.paitent = paitent;
+    public void setPatient(PatientProfile patient) {
+        this.patient = patient;
     }
 
     public LocalDate getLogDate() {
@@ -51,27 +66,27 @@ public class DailySymptomLog {
         this.logDate = logDate;
     }
 
-    public int getPainLevel() {
+    public Integer getPainLevel() {
         return painLevel;
     }
 
-    public void setPainLevel(int painLevel) {
+    public void setPainLevel(Integer painLevel) {
         this.painLevel = painLevel;
     }
 
-    public int getMobilityLevel() {
+    public Integer getMobilityLevel() {
         return mobilityLevel;
     }
 
-    public void setMobilityLevel(int mobilityLevel) {
+    public void setMobilityLevel(Integer mobilityLevel) {
         this.mobilityLevel = mobilityLevel;
     }
 
-    public int getFatigueLevel() {
+    public Integer getFatigueLevel() {
         return fatigueLevel;
     }
 
-    public void setFatigueLevel(int fatigueLevel) {
+    public void setFatigueLevel(Integer fatigueLevel) {
         this.fatigueLevel = fatigueLevel;
     }
 
