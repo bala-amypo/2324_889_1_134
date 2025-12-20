@@ -1,17 +1,26 @@
 package com.example.demo.model;
+
+import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
 
-public class RecoveryCurveProfile{
+@Entity
+public class RecoveryCurveProfile {
+
     @Id
+    @GeneratedValue
     private Long id;
-    private String surgeryType;
-    private int dayNumber;
-    private int expectedPainLevel;
-    private int expectedMobilityLevel;
-    private int expectedFatigueLevel;
 
-public RecoveryCurveProfile(Long id, String surgeryType, int dayNumber, int expectedPainLevel,
-            int expectedMobilityLevel, int expectedFatigueLevel) {
+    private String surgeryType;
+    private Integer dayNumber;
+    private Integer expectedPainLevel;
+    private Integer expectedMobilityLevel;
+    private Integer expectedFatigueLevel;
+
+    public RecoveryCurveProfile(Long id, String surgeryType, Integer dayNumber,
+                                Integer expectedPainLevel,
+                                Integer expectedMobilityLevel,
+                                Integer expectedFatigueLevel) {
         this.id = id;
         this.surgeryType = surgeryType;
         this.dayNumber = dayNumber;
@@ -20,67 +29,55 @@ public RecoveryCurveProfile(Long id, String surgeryType, int dayNumber, int expe
         this.expectedFatigueLevel = expectedFatigueLevel;
     }
 
+   
+    public RecoveryCurveProfile() {
+    }
 
     public Long getId() {
         return id;
     }
 
-
     public void setId(Long id) {
         this.id = id;
     }
-
 
     public String getSurgeryType() {
         return surgeryType;
     }
 
-
     public void setSurgeryType(String surgeryType) {
         this.surgeryType = surgeryType;
     }
 
-
-    public int getDayNumber() {
+    public Integer getDayNumber() {
         return dayNumber;
     }
 
-
-    public void setDayNumber(int dayNumber) {
+    public void setDayNumber(Integer dayNumber) {
         this.dayNumber = dayNumber;
     }
 
-
-    public int getExpectedPainLevel() {
+    public Integer getExpectedPainLevel() {
         return expectedPainLevel;
     }
 
-
-    public void setExpectedPainLevel(int expectedPainLevel) {
+    public void setExpectedPainLevel(Integer expectedPainLevel) {
         this.expectedPainLevel = expectedPainLevel;
     }
 
-
-    public int getExpectedMobilityLevel() {
+    public Integer getExpectedMobilityLevel() {
         return expectedMobilityLevel;
     }
 
-
-    public void setExpectedMobilityLevel(int expectedMobilityLevel) {
+    public void setExpectedMobilityLevel(Integer expectedMobilityLevel) {
         this.expectedMobilityLevel = expectedMobilityLevel;
     }
 
-
-    public int getExpectedFatigueLevel() {
+    public Integer getExpectedFatigueLevel() {
         return expectedFatigueLevel;
     }
 
-
-    public void setExpectedFatigueLevel(int expectedFatigueLevel) {
+    public void setExpectedFatigueLevel(Integer expectedFatigueLevel) {
         this.expectedFatigueLevel = expectedFatigueLevel;
-    }
-
-
-    public RecoveryCurveProfile() {
     }
 }
