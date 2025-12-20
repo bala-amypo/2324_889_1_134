@@ -1,24 +1,40 @@
 package com.example.demo.model;
+
+import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Column;
 
-public class PaitentProfile {
+import java.time.LocalDateTime;
+
+@Entity
+public class PatientProfile {
+
     @Id
+    @GeneratedValue
     private Long id;
-    @column(name=unique)
-    private String patientid;
-    private String fullname;
-    private int age;
-    @column(name=unique)
-    private String email;
-    private String surgeryType;
-    private boolean active;
-    private LocalDate createdAt;
 
-public PaitentProfile(Long id, String patientid, String fullname, int age, String email, String surgeryType,
-            boolean active, LocalDate createdAt) {
+    @Column(unique = true)
+    private String patientId;
+
+    private String fullName;
+    private Integer age;   
+    @Column(unique = true)
+    private String email;
+
+    private String surgeryType;
+    private Boolean active;  
+    private LocalDateTime createdAt;  
+
+    public PatientProfile() {
+    }
+
+    public PatientProfile(Long id, String patientId, String fullName, Integer age,
+                          String email, String surgeryType, Boolean active,
+                          LocalDateTime createdAt) {
         this.id = id;
-        this.patientid = patientid;
-        this.fullname = fullname;
+        this.patientId = patientId;
+        this.fullName = fullName;
         this.age = age;
         this.email = email;
         this.surgeryType = surgeryType;
@@ -34,27 +50,27 @@ public PaitentProfile(Long id, String patientid, String fullname, int age, Strin
         this.id = id;
     }
 
-    public String getPatientid() {
-        return patientid;
+    public String getPatientId() {
+        return patientId;
     }
 
-    public void setPatientid(String patientid) {
-        this.patientid = patientid;
+    public void setPatientId(String patientId) {
+        this.patientId = patientId;
     }
 
-    public String getFullname() {
-        return fullname;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
-    public int getAge() {
+    public Integer getAge() {   
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {  
         this.age = age;
     }
 
@@ -74,23 +90,18 @@ public PaitentProfile(Long id, String patientid, String fullname, int age, Strin
         this.surgeryType = surgeryType;
     }
 
-    public boolean isActive() {
-        return active;
+    public Boolean isActive() {   
     }
 
-    public void setActive(boolean active) {
+    public void setActive(Boolean active) {   
         this.active = active;
     }
 
-    public LocalDate getCreatedAt() {
+    public LocalDateTime getCreatedAt() {   
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDate createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {  
         this.createdAt = createdAt;
     }
-
-    public PaitentProfile() {
-    }
-
 }
