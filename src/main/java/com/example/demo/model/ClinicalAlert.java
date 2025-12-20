@@ -1,18 +1,37 @@
 package com.example.demo.model;
-import jakarta.persistence.Id;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.EnumType;
+
+import java.time.LocalDate;
+
+@Entity
 public class ClinicalAlert {
+
     @Id
+    @GeneratedValue
     private Long id;
-    private PaitentProfile paitent;
-    private LocalDate alterDate;
-    private Severity severity; 
+
+    @ManyToOne
+    private PatientProfile patient;
+
+    private LocalDate alertDate;
+
+    @Enumerated(EnumType.STRING)
+    private Severity severity;
+
     private boolean resolved;
-    
-    public ClinicalAlert(Long id, PaitentProfile paitent, LocalDate alterDate, Severity severity, boolean resolved) {
+
+    public ClinicalAlert(Long id, PatientProfile patient,
+                          LocalDate alertDate, Severity severity,
+                          boolean resolved) {
         this.id = id;
-        this.paitent = paitent;
-        this.alterDate = alterDate;
+        this.patient = patient;
+        this.alertDate = alertDate;
         this.severity = severity;
         this.resolved = resolved;
     }
@@ -28,20 +47,20 @@ public class ClinicalAlert {
         this.id = id;
     }
 
-    public PaitentProfile getPaitent() {
-        return paitent;
+    public PatientProfile getPatient() {
+        return patient;
     }
 
-    public void setPaitent(PaitentProfile paitent) {
-        this.paitent = paitent;
+    public void setPatient(PatientProfile patient) {
+        this.patient = patient;
     }
 
-    public LocalDate getAlterDate() {
-        return alterDate;
+    public LocalDate getAlertDate() {
+        return alertDate;
     }
 
-    public void setAlterDate(LocalDate alterDate) {
-        this.alterDate = alterDate;
+    public void setAlertDate(LocalDate alertDate) {
+        this.alertDate = alertDate;
     }
 
     public Severity getSeverity() {
