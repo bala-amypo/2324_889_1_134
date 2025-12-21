@@ -15,7 +15,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public void register(AppUser user) {
-        if (repo.findByEmail(user.getEmail()) != null) {
+        if(repo.findByEmail(user.getEmail()) != null) {
             throw new RuntimeException("Email already exists");
         }
         repo.save(user);
