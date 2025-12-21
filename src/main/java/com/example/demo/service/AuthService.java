@@ -1,7 +1,10 @@
 package com.example.demo.service;
+
 import com.example.demo.model.AppUser;
 
-public interface AuthService{
-    AppUser register(RegisterRequest request);
-    AppUser login(AuthRequest request); 
+public interface AuthService {
+
+    void register(AppUser user);
+
+    AppUser login(AppUser user);
 }
