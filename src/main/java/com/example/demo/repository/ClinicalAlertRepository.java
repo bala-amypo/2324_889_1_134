@@ -10,6 +10,3 @@ public interface ClinicalAlertRepository extends JpaRepository<ClinicalAlert, Lo
 
     List<ClinicalAlert> findByPatient_Id(Long patientid);
 }
-
-
-p
