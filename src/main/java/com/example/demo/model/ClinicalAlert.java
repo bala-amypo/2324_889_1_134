@@ -32,5 +32,3 @@ public class ClinicalAlert {
     @NotNull
     private Boolean resolved;
 }
-
-
