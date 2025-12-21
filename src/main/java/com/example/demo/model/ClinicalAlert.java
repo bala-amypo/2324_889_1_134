@@ -1,81 +1,36 @@
 package com.example.demo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.EnumType;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+import lombok.*;
 
 import java.time.LocalDate;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ClinicalAlert {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
+    @NotNull
     private PatientProfile patient;
 
+    @NotNull
     private LocalDate alertDate;
 
-    @Enumerated(EnumType.STRING)
-    private Severity severity;
+    @NotNull
+    private String severity;
 
-    private boolean resolved;
+    @NotNull
+    private String message;
 
-    public ClinicalAlert(Long id, PatientProfile patient,
-                          LocalDate alertDate, Severity severity,
-                          boolean resolved) {
-        this.id = id;
-        this.patient = patient;
-        this.alertDate = alertDate;
-        this.severity = severity;
-        this.resolved = resolved;
-    }
-
-    public ClinicalAlert() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public PatientProfile getPatient() {
-        return patient;
-    }
-
-    public void setPatient(PatientProfile patient) {
-        this.patient = patient;
-    }
-
-    public LocalDate getAlertDate() {
-        return alertDate;
-    }
-
-    public void setAlertDate(LocalDate alertDate) {
-        this.alertDate = alertDate;
-    }
-
-    public Severity getSeverity() {
-        return severity;
-    }
-
-    public void setSeverity(Severity severity) {
-        this.severity = severity;
-    }
-
-    public boolean isResolved() {
-        return resolved;
-    }
-
-    public void setResolved(boolean resolved) {
-        this.resolved = resolved;
-    }
+    @NotNull
+    private Boolean resolved;
 }
+
+

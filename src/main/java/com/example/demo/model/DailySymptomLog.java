@@ -1,108 +1,106 @@
+
+
+
+
 package com.example.demo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+import lombok.*;
+
+@Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class RecoveryCurveProfile {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @NotNull
+    private String surgeryType;
+
+    @Positive
+    private Integer dayNumber;
+
+    @Positive
+    private Integer expectedPainLevel;
+
+    @Positive
+    private Integer expectedMobilityLevel;
+
+    @Positive
+    private Integer expectedFatigueLevel;
+}
+
+
+package com.example.demo.model;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+import lombok.*;
+
+@Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class DeviationRule {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @NotNull
+    private String surgeryType;
+
+    @NotNull
+    private String symptomParameter;
+
+    @Positive(message = "Threshold must be positive")
+    private Integer thresholdDeviation;
+
+    @NotNull
+    private Boolean active;
+}
+
+package com.example.demo.model;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class DailySymptomLog {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
+    @NotNull
     private PatientProfile patient;
 
+    @NotNull
     private LocalDate logDate;
+
+    @Positive
     private Integer painLevel;
+
+    @Positive
     private Integer mobilityLevel;
+
+    @Positive
     private Integer fatigueLevel;
+
+    @Size(max = 255)
     private String notes;
+
     private LocalDateTime submittedAt;
-
-    public DailySymptomLog(Integer fatigueLevel, Long id, LocalDate logDate,
-                           Integer mobilityLevel, String notes,
-                           Integer painLevel, PatientProfile patient,
-                           LocalDateTime submittedAt) {
-        this.fatigueLevel = fatigueLevel;
-        this.id = id;
-        this.logDate = logDate;
-        this.mobilityLevel = mobilityLevel;
-        this.notes = notes;
-        this.painLevel = painLevel;
-        this.patient = patient;
-        this.submittedAt = submittedAt;
-    }
-
-    public DailySymptomLog() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public PatientProfile getPatient() {
-        return patient;
-    }
-
-    public void setPatient(PatientProfile patient) {
-        this.patient = patient;
-    }
-
-    public LocalDate getLogDate() {
-        return logDate;
-    }
-
-    public void setLogDate(LocalDate logDate) {
-        this.logDate = logDate;
-    }
-
-    public Integer getPainLevel() {
-        return painLevel;
-    }
-
-    public void setPainLevel(Integer painLevel) {
-        this.painLevel = painLevel;
-    }
-
-    public Integer getMobilityLevel() {
-        return mobilityLevel;
-    }
-
-    public void setMobilityLevel(Integer mobilityLevel) {
-        this.mobilityLevel = mobilityLevel;
-    }
-
-    public Integer getFatigueLevel() {
-        return fatigueLevel;
-    }
-
-    public void setFatigueLevel(Integer fatigueLevel) {
-        this.fatigueLevel = fatigueLevel;
-    }
-
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
-
-    public LocalDateTime getSubmittedAt() {
-        return submittedAt;
-    }
-
-    public void setSubmittedAt(LocalDateTime submittedAt) {
-        this.submittedAt = submittedAt;
-    }
 }
