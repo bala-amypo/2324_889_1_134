@@ -3,15 +3,35 @@ package com.example.demo.service;
 import com.example.demo.model.PatientProfile;
 import java.util.List;
 
-public interface PatientProfileService {
+@Service
+public class PatientProfileServiceImpl implements PatientProfileService {
 
-    PatientProfile createPatient(PatientProfile patient);
+    private final PatientProfileRepository repo;
 
-    PatientProfile getPatientById(Long id);
+    public PatientProfileServiceImpl(PatientProfileRepository repo) {
+        this.repo = repo;
+    }
 
-    List<PatientProfile> getAllPatients();
+    public PatientProfile createPatient(PatientProfile p) {
+        return repo.save(p);
+    }
 
-    void updatePatientStatus(Long id, boolean active);
+    public PatientProfile getPatientById(Long id) {
+        return repo.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Patient not found"));
+    }
 
-    PatientProfile getByPatientId(String patientid);
+    public PatientProfile updatePatientStatus(Long id, boolean active) {
+        PatientProfile p = getPatientById(id);
+        p.setActive(active);
+        return repo.save(p);
+    }
+
+    public Optional<PatientProfile> findByPatientId(String pid) {
+        return repo.findByPatientId(pid);
+    }
+
+    public List<PatientProfile> getAllPatients() {
+        return repo.findAll();
+    }
 }
