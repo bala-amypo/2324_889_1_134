@@ -1,28 +1,25 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
 import lombok.*;
 
 @Entity
 @Data
-@AllArgsConstructor
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class AppUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Email(message = "Email is not valid")
-    @NotNull
     @Column(unique = true)
     private String email;
 
-    @NotNull
-    @Size(min = 3, max = 20)
     private String password;
+    private String fullName;
 
-    @NotNull
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
 }
