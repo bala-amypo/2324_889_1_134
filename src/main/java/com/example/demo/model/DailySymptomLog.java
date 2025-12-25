@@ -1,40 +1,32 @@
 package com.example.demo.model;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
+import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "daily_symptom_logs")
 @Data
-@AllArgsConstructor
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class DailySymptomLog {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @NotNull
-    private PatientProfile patient;
+    @Column(nullable = false)
+    private Long patientId;
 
-    @NotNull
+    @Column(nullable = false)
     private LocalDate logDate;
 
-    @Positive
     private Integer painLevel;
-
-    @Positive
     private Integer mobilityLevel;
-
-    @Positive
     private Integer fatigueLevel;
-
-    @Size(max = 255)
-    private String notes;
-
-    private LocalDateTime submittedAt;
+    private String additionalNotes;
 }

@@ -1,44 +1,40 @@
 package com.example.demo.model;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "patient_profiles")
 @Data
-@AllArgsConstructor
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class PatientProfile {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message = "Patient ID is required")
-    @Size(min = 3, max = 20)
-    @Column(unique = true)
-    private String patientid;
+    @Column(unique = true, nullable = false)
+    private String patientId;
 
-    @NotNull
-    @Size(min = 2, max = 50)
+    @Column(nullable = false)
     private String fullName;
 
-    @Positive
-    @Max(120)
     private Integer age;
 
-    @Email(message = "Email is not valid")
-    @NotNull
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String email;
 
-    @NotNull
     private String surgeryType;
 
-    @NotNull
-    private Boolean active;
+    @Builder.Default
+    private Boolean active = true;
 
-    private LocalDateTime createdAt;
+    @Builder.Default
+    private LocalDateTime createdAt = LocalDateTime.now();
 }
