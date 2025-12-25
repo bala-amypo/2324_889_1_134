@@ -1,41 +1,35 @@
 package com.example.demo.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-import com.example.demo.service.DailySymptomLogService;
 import com.example.demo.model.DailySymptomLog;
-import jakarta.validation.Valid;
+import com.example.demo.service.DailySymptomLogService;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/symptom-logs")
+@Tag(name = "Daily Symptom Logs")
 public class DailySymptomLogController {
+    private final DailySymptomLogService dailySymptomLogService;
 
-    @Autowired
-    private DailySymptomLogService service;
+    public DailySymptomLogController(DailySymptomLogService dailySymptomLogService) {
+        this.dailySymptomLogService = dailySymptomLogService;
+    }
 
     @PostMapping
-    public DailySymptomLog addLog(@Valid @RequestBody DailySymptomLog log) {
-        return service.recordLog(log);
+    public ResponseEntity<DailySymptomLog> recordSymptomLog(@RequestBody DailySymptomLog log) {
+        return ResponseEntity.ok(dailySymptomLogService.recordSymptomLog(log));
     }
 
     @PutMapping("/{id}")
-    public DailySymptomLog updateLog(@PathVariable Long id, @Valid @RequestBody DailySymptomLog log) {
-        return service.updateLog(id, log);
+    public ResponseEntity<DailySymptomLog> updateSymptomLog(@PathVariable Long id, @RequestBody DailySymptomLog updated) {
+        return ResponseEntity.ok(dailySymptomLogService.updateSymptomLog(id, updated));
     }
 
-    @GetMapping("/patient/{patientid}")
-    public List<DailySymptomLog> getLogsByPatient(@PathVariable Long patientid) {
-        return service.getLogsByPatient(patientid);
-    }
-
-    @GetMapping("/{id}")
-    public DailySymptomLog getLogById(@PathVariable Long id) {
-        return service.getLogById(id);
-    }
-
-    @GetMapping
-    public List<DailySymptomLog> getAllLogs() {
-        return service.getAllLogs();
+    @GetMapping("/patient/{patientId}")
+    public ResponseEntity<List<DailySymptomLog>> getLogsByPatient(@PathVariable Long patientId) {
+        return ResponseEntity.ok(dailySymptomLogService.getLogsByPatient(patientId));
     }
 }

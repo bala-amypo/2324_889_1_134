@@ -1,48 +1,40 @@
 package com.example.demo.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-import com.example.demo.service.DeviationRuleService;
 import com.example.demo.model.DeviationRule;
-import jakarta.validation.Valid;
+import com.example.demo.service.DeviationRuleService;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/deviation-rules")
+@Tag(name = "Deviation Rules")
 public class DeviationRuleController {
+    private final DeviationRuleService deviationRuleService;
 
-    @Autowired
-    private DeviationRuleService service;
+    public DeviationRuleController(DeviationRuleService deviationRuleService) {
+        this.deviationRuleService = deviationRuleService;
+    }
 
-    
     @PostMapping
-    public DeviationRule createRule(@Valid @RequestBody DeviationRule rule) {
-        return service.createRule(rule);
+    public ResponseEntity<DeviationRule> createRule(@RequestBody DeviationRule rule) {
+        return ResponseEntity.ok(deviationRuleService.createRule(rule));
     }
 
-    
     @PutMapping("/{id}")
-    public DeviationRule updateRule(
-            @PathVariable Long id,
-            @Valid @RequestBody DeviationRule rule) {
-        return service.updateRule(id, rule);
+    public ResponseEntity<DeviationRule> updateRule(@PathVariable Long id, @RequestBody DeviationRule rule) {
+        return ResponseEntity.ok(deviationRuleService.updateRule(id, rule));
     }
 
-    
-    @GetMapping
-    public List<DeviationRule> getAllRules() {
-        return service.getAllRules();
-    }
-
-    
     @GetMapping("/active")
-    public List<DeviationRule> getActiveRules() {
-        return service.getActiveRules();
+    public ResponseEntity<List<DeviationRule>> getActiveRules() {
+        return ResponseEntity.ok(deviationRuleService.getActiveRules());
     }
 
-    
-    @GetMapping("/{id}")
-    public DeviationRule getRuleById(@PathVariable Long id) {
-        return service.getRuleById(id);
+    @GetMapping
+    public ResponseEntity<List<DeviationRule>> getAllRules() {
+        return ResponseEntity.ok(deviationRuleService.getAllRules());
     }
 }
