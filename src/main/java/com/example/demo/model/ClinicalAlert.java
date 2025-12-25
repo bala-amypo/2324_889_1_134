@@ -1,34 +1,20 @@
-package com.example.demo.model;
-
-import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
-import lombok.*;
-
-import java.time.LocalDate;
-
 @Entity
 @Data
-@AllArgsConstructor
+@Builder
 @NoArgsConstructor
-public class ClinicalAlert {
+@AllArgsConstructor
+public class ClinicalAlertRecord {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
 
-    @ManyToOne
-    @NotNull
-    private PatientProfile patient;
-
-    @NotNull
-    private LocalDate alertDate;
-
-    @NotNull
+    private Long patientId;
+    private Long logId;
+    private String alertType;
     private String severity;
-
-    @NotNull
     private String message;
 
-    @NotNull
-    private Boolean resolved;
+    @Builder.Default
+    private Boolean resolved = false;   
 }

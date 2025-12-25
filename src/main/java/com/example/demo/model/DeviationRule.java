@@ -1,28 +1,19 @@
-package com.example.demo.model;
-
-import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
-import lombok.*;
-
 @Entity
 @Data
-@AllArgsConstructor
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class DeviationRule {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
 
-    @NotNull
-    private String surgeryType;
+    private String ruleCode;
+    private String parameter;
+    private Integer threshold;
+    private String severity;
 
-    @NotNull
-    private String symptomParameter;
-
-    @Positive(message = "Threshold must be positive")
-    private Integer thresholdDeviation;
-
-    @NotNull
-    private Boolean active;
+    @Builder.Default
+    private Boolean active = true;   
 }
