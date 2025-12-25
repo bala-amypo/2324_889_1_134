@@ -1,55 +1,56 @@
 package com.example.demo.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
+import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.model.DeviationRule;
 import com.example.demo.repository.DeviationRuleRepository;
 import com.example.demo.service.DeviationRuleService;
-import com.example.demo.exception.ResourceNotFoundException;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DeviationRuleServiceImpl implements DeviationRuleService {
+    private final DeviationRuleRepository deviationRuleRepository;
 
-    @Autowired
-    private DeviationRuleRepository repo;
+    public DeviationRuleServiceImpl(DeviationRuleRepository deviationRuleRepository) {
+        this.deviationRuleRepository = deviationRuleRepository;
+    }
 
     @Override
     public DeviationRule createRule(DeviationRule rule) {
-        return repo.save(rule);
+        if (rule.getThreshold() != null && rule.getThreshold() <= 0) {
+            throw new IllegalArgumentException("Threshold must be positive");
+        }
+        return deviationRuleRepository.save(rule);
     }
 
     @Override
     public DeviationRule updateRule(Long id, DeviationRule rule) {
-        DeviationRule existing = repo.findById(id)
+        DeviationRule existing = deviationRuleRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Rule not found"));
-        rule.setId(existing.getId());
-        return repo.save(rule);
+        
+        existing.setRuleCode(rule.getRuleCode());
+        existing.setParameter(rule.getParameter());
+        existing.setThreshold(rule.getThreshold());
+        existing.setSeverity(rule.getSeverity());
+        existing.setActive(rule.getActive());
+        
+        return deviationRuleRepository.save(existing);
     }
 
     @Override
     public List<DeviationRule> getAllRules() {
-        return repo.findAll();
+        return deviationRuleRepository.findAll();
     }
 
     @Override
     public List<DeviationRule> getActiveRules() {
-        return repo.findAll(); 
+        return deviationRuleRepository.findByActiveTrue();
     }
 
     @Override
-    public DeviationRule getRuleById(Long id) {
-        return repo.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Rule not found"));
-    }
-
-    @Override
-    public List<DeviationRule> getRulesBySurgery(String surgeryType) {
-        return repo.findBySurgeryType(surgeryType);
+    public Optional<DeviationRule> getRuleByCode(String ruleCode) {
+        return deviationRuleRepository.findByRuleCode(ruleCode);
     }
 }
-
-
- 
