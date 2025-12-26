@@ -1,35 +1,32 @@
 package com.example.demo.model;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
-
-import javax.persistence.*;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
-@Table(name = "deviation_rules")
+@Table(name = "deviation_rules", indexes = {
+        @Index(name = "idx_rule_code", columnList = "ruleCode", unique = true)
+})
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class DeviationRule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false, unique = true)
     private String ruleCode;
 
-    @Column(nullable = false)
-    private String parameter;
+    private String parameter; // PAIN, MOBILITY, etc
 
-    @Column(nullable = false)
     private Integer threshold;
 
     private String severity;
-    private String surgeryType;
 
     @Builder.Default
     private Boolean active = true;
+
+    private String surgeryType; // for surgery specific rules
 }

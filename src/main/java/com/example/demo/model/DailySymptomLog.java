@@ -1,32 +1,32 @@
 package com.example.demo.model;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "daily_symptom_logs")
+@Table(name = "daily_symptom_logs", indexes = {
+        @Index(name = "idx_patient_date", columnList = "patientId,logDate", unique = true)
+})
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class DailySymptomLog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private Long patientId;
+    private Long patientId; // FK reference to PatientProfile.id
 
-    @Column(nullable = false)
     private LocalDate logDate;
 
     private Integer painLevel;
+
     private Integer mobilityLevel;
+
     private Integer fatigueLevel;
+
     private String additionalNotes;
 }
