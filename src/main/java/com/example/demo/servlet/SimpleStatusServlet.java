@@ -1,27 +1,30 @@
 package com.example.demo.servlet;
 
-import org.springframework.boot.web.servlet.ServletRegistrationBean;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.stereotype.Component;
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@Configuration
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
+import org.springframework.context.annotation.Bean;
+
+@Component
 public class SimpleStatusServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setStatus(200);
         resp.setContentType("text/plain");
         resp.getWriter().write("OK");
     }
 
     @Bean
-    public ServletRegistrationBean<SimpleStatusServlet> statusServletRegistration() {
-        ServletRegistrationBean<SimpleStatusServlet> registration = new ServletRegistrationBean<>(new SimpleStatusServlet());
-        registration.addUrlMappings("/status");
-        return registration;
+    public ServletRegistrationBean<HttpServlet> statusServlet() {
+        ServletRegistrationBean<HttpServlet> srb = new ServletRegistrationBean<>(this, "/status");
+        srb.setName("statusServlet");
+        return srb;
     }
 }

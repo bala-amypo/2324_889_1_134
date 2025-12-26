@@ -4,7 +4,6 @@ import com.example.demo.dto.AuthRequest;
 import com.example.demo.dto.AuthResponse;
 import com.example.demo.dto.RegisterRequest;
 import com.example.demo.model.AppUser;
-import com.example.demo.model.UserRole;
 import com.example.demo.repository.AppUserRepository;
 import com.example.demo.security.JwtTokenProvider;
 import com.example.demo.service.AuthService;
@@ -15,13 +14,16 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AuthServiceImpl implements AuthService {
+
     private final AppUserRepository appUserRepository;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final JwtTokenProvider jwtTokenProvider;
 
-    public AuthServiceImpl(AppUserRepository appUserRepository, PasswordEncoder passwordEncoder,
-                          AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider) {
+    public AuthServiceImpl(AppUserRepository appUserRepository,
+                           PasswordEncoder passwordEncoder,
+                           AuthenticationManager authenticationManager,
+                           JwtTokenProvider jwtTokenProvider) {
         this.appUserRepository = appUserRepository;
         this.passwordEncoder = passwordEncoder;
         this.authenticationManager = authenticationManager;
@@ -30,43 +32,37 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public AuthResponse register(RegisterRequest request) {
-        if (appUserRepository.findByEmail(request.getEmail()).isPresent()) {
+        appUserRepository.findByEmail(request.getEmail()).ifPresent(u -> {
             throw new IllegalArgumentException("Email already exists");
-        }
-
+        });
         AppUser user = AppUser.builder()
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .fullName(request.getFullName())
-                .role(request.getRole() != null ? request.getRole() : UserRole.CLINICIAN)
+                .role(request.getRole())
                 .build();
-
-        user = appUserRepository.save(user);
-        String token = jwtTokenProvider.generateToken(user);
-
+        AppUser saved = appUserRepository.save(user);
+        String token = jwtTokenProvider.generateToken(saved);
         return AuthResponse.builder()
                 .token(token)
-                .email(user.getEmail())
-                .role(user.getRole().name())
-                .userId(user.getId())
+                .email(saved.getEmail())
+                .role(saved.getRole())
+                .userId(saved.getId())
                 .build();
     }
 
     @Override
     public AuthResponse login(AuthRequest request) {
         AppUser user = appUserRepository.findByEmail(request.getEmail())
-                .orElseThrow(() -> new IllegalArgumentException("Invalid credentials"));
-
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user"));
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
         );
-
         String token = jwtTokenProvider.generateToken(user);
-
         return AuthResponse.builder()
                 .token(token)
                 .email(user.getEmail())
-                .role(user.getRole().name())
+                .role(user.getRole())
                 .userId(user.getId())
                 .build();
     }
