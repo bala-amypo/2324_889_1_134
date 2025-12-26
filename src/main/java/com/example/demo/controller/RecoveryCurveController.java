@@ -12,6 +12,7 @@ import java.util.List;
 @RequestMapping("/api/recovery-curves")
 @Tag(name = "Recovery Curves")
 public class RecoveryCurveController {
+
     private final RecoveryCurveService recoveryCurveService;
 
     public RecoveryCurveController(RecoveryCurveService recoveryCurveService) {
@@ -19,7 +20,7 @@ public class RecoveryCurveController {
     }
 
     @PostMapping
-    public ResponseEntity<RecoveryCurveProfile> createCurveEntry(@RequestBody RecoveryCurveProfile curve) {
+    public ResponseEntity<RecoveryCurveProfile> create(@RequestBody RecoveryCurveProfile curve) {
         return ResponseEntity.ok(recoveryCurveService.createCurveEntry(curve));
     }
 
@@ -29,7 +30,7 @@ public class RecoveryCurveController {
     }
 
     @GetMapping
-    public ResponseEntity<List<RecoveryCurveProfile>> getAllCurves() {
+    public ResponseEntity<List<RecoveryCurveProfile>> getAll() {
         return ResponseEntity.ok(recoveryCurveService.getAllCurves());
     }
 }

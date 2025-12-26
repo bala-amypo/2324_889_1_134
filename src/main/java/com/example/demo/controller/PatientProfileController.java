@@ -11,8 +11,9 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/patients")
-@Tag(name = "Patient Profiles")
+@Tag(name = "Patients")
 public class PatientProfileController {
+
     private final PatientProfileService patientProfileService;
 
     public PatientProfileController(PatientProfileService patientProfileService) {
@@ -20,22 +21,22 @@ public class PatientProfileController {
     }
 
     @PostMapping
-    public ResponseEntity<PatientProfile> createPatient(@RequestBody PatientProfile profile) {
+    public ResponseEntity<PatientProfile> create(@RequestBody PatientProfile profile) {
         return ResponseEntity.ok(patientProfileService.createPatient(profile));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PatientProfile> getPatientById(@PathVariable Long id) {
+    public ResponseEntity<PatientProfile> getById(@PathVariable Long id) {
         return ResponseEntity.ok(patientProfileService.getPatientById(id));
     }
 
     @GetMapping
-    public ResponseEntity<List<PatientProfile>> getAllPatients() {
+    public ResponseEntity<List<PatientProfile>> getAll() {
         return ResponseEntity.ok(patientProfileService.getAllPatients());
     }
 
     @PutMapping("/{id}/status")
-    public ResponseEntity<PatientProfile> updatePatientStatus(@PathVariable Long id, @RequestParam boolean active) {
+    public ResponseEntity<PatientProfile> updateStatus(@PathVariable Long id, @RequestParam boolean active) {
         return ResponseEntity.ok(patientProfileService.updatePatientStatus(id, active));
     }
 
