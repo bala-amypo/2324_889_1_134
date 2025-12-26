@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
-@Tag(name = "Authentication")
+@Tag(name = "Auth")
 public class AuthController {
+
     private final AuthService authService;
 
     public AuthController(AuthService authService) {
