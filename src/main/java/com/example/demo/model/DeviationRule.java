@@ -19,7 +19,7 @@ public class DeviationRule {
     @Column(nullable = false, unique = true)
     private String ruleCode;
 
-    private String parameter; // PAIN, MOBILITY, etc
+    private String parameter; 
 
     private Integer threshold;
 
@@ -28,5 +28,5 @@ public class DeviationRule {
     @Builder.Default
     private Boolean active = true;
 
-    private String surgeryType; // for surgery specific rules
+    private String surgeryType; 
 }
