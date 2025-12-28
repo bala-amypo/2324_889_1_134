@@ -18,5 +18,15 @@ import org.springframework.context.annotation.Configuration;
         scheme = "bearer",
         bearerFormat = "JWT"
 )
+@Configuration
 public class SwaggerConfig {
+
+    @Bean
+    public OpenAPI customOpenAPI() {
+        return new OpenAPI()
+                // You need to change the port as per your server
+                .servers(List.of(
+                        new Server().url("https://9291.pro604cr.amypo.ai/")
+                ));
+        }
 }
